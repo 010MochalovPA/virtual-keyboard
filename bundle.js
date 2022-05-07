@@ -16,17 +16,17 @@
   \****************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_scss_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/scss/style.scss */ \"./assets/scss/style.scss\");\n/* harmony import */ var _assets_scss_reset_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/scss/reset.scss */ \"./assets/scss/reset.scss\");\n/* harmony import */ var _assets_modules_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/modules/page */ \"./assets/modules/page.js\");\n\n\n\n\n\n(0,_assets_modules_page__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n\n\n//# sourceURL=webpack://virtual-keyboard/./app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_scss_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/scss/style.scss */ \"./assets/scss/style.scss\");\n/* harmony import */ var _assets_scss_reset_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/scss/reset.scss */ \"./assets/scss/reset.scss\");\n/* harmony import */ var _assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/modules/keyboard */ \"./assets/modules/keyboard.js\");\n\n\n\n// import init from './assets/modules/page';\n\nconst textArea = document.createElement('textarea');\n// const keyboard = document.createElement('div');\n\n_assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__[\"default\"].init();\ntextArea.focus();\nconst keys = document.querySelectorAll('.key');\n// const textArea = document.querySelector('textarea');\nfunction checkKeysDown(event) {\n  document.removeEventListener('keydown', checkKeysDown);\n  if (event.key === 'Shift') _assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__[\"default\"].changeCaps();\n  else if (event.key === 'CapsLock') _assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__[\"default\"].changeCaps();\n  else if (event.ctrlKey || event.altKey) {\n    document.addEventListener('keydown', checkKeysDown);\n    if (event.ctrlKey && event.altKey) _assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__[\"default\"].changeLang();\n  }\n\n  _assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__[\"default\"].render(keys);\n}\n\ndocument.addEventListener('keydown', checkKeysDown);\n\ndocument.addEventListener('keyup', (event) => {\n  document.addEventListener('keydown', checkKeysDown);\n  if (event.key === 'Shift') {\n    _assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__[\"default\"].changeCaps();\n    _assets_modules_keyboard__WEBPACK_IMPORTED_MODULE_2__[\"default\"].render(keys);\n  }\n});\n\n\n//# sourceURL=webpack://virtual-keyboard/./app.js?");
 
 /***/ }),
 
-/***/ "./assets/modules/page.js":
-/*!********************************!*\
-  !*** ./assets/modules/page.js ***!
-  \********************************/
+/***/ "./assets/modules/keyboard.js":
+/*!************************************!*\
+  !*** ./assets/modules/keyboard.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ init)\n/* harmony export */ });\nfunction init() {\n  const wrapper = document.createElement('div');\n  const textArea = document.createElement('textarea');\n  const keyboard = document.createElement('div');\n\n  const keyLayout = [\n    '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace',\n    '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace',\n  ];\n\n  wrapper.className = 'wrapper';\n  keyboard.className = 'keyboard';\n\n  document.body.append(wrapper);\n  wrapper.append(textArea);\n  wrapper.append(keyboard);\n\n  keyLayout.forEach((elem) => {\n    const key = document.createElement('div');\n    key.className = 'key';\n    if (elem.length !== 1) key.classList.add(elem);\n    key.innerHTML = elem;\n    keyboard.append(key);\n  });\n}\n\n\n//# sourceURL=webpack://virtual-keyboard/./assets/modules/page.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _webp_space_webp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../webp/space.webp */ \"./assets/webp/space.webp\");\n\n\nconst Keyboard = {\n  config: {\n    lang: 'en',\n    caps: false,\n    shift: false,\n  },\n  KeyCodeArray: [\n    'Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7',\n    'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backslash', 'Backspace',\n    'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO',\n    'KeyP', 'BracketLeft', 'BracketRight', 'NumpadDecimal',\n    'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK',\n    'KeyL', 'Semicolon', 'Quote', 'Enter',\n    'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma',\n    'Period', 'Slash', 'ArrowUp', 'ShiftRight',\n    'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltLeftRight', 'ArrowLeft',\n    'ArrowDown', 'ArrowRight', 'ControlRight',\n  ],\n  keyLayoutObj: {\n    en: {\n      Upper: [\n        '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '|', '⌫',\n        'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', 'Del',\n        'Caps', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '\"', 'Enter',\n        'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '&#9650', 'Shift',\n        'Ctrl', 'Win', 'Alt', ' ', 'Alt', '&#9664', '&#9660', '&#9654', 'Ctrl'],\n      Lower: [\n        '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\\\\', '⌫',\n        'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Del',\n        'Caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', \"'\", 'Enter',\n        'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '&#9650', 'Shift',\n        'Ctrl', 'Win', 'Alt', ' ', 'Alt', '&#9664', '&#9660', '&#9654', 'Ctrl'],\n    },\n    ru: {\n      Upper: [\n        'Ё', '!', '\"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', '/', '⌫',\n        'Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', 'Del',\n        'Caps', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter',\n        'Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', '&#9650', 'Shift',\n        'Ctrl', 'Win', 'Alt', ' ', 'Alt', '&#9664', '&#9660', '&#9654', 'Ctrl'],\n      Lower: [\n        'ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\\\\', '⌫',\n        'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'ч', 'ъ', 'Del',\n        'Caps', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',\n        'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '&#9650', 'Shift',\n        'Ctrl', 'Win', 'Alt', ' ', 'Alt', '&#9664', '&#9660', '&#9654', 'Ctrl'],\n\n    },\n  },\n\n  init() {\n    const textArea = document.createElement('textarea');\n    const keyboard = document.createElement('div');\n\n    keyboard.className = 'keyboard';\n    textArea.readOnly = true;\n    document.body.append(textArea);\n    document.body.append(keyboard);\n\n    this.keyLayoutObj.en.Lower.forEach((elem, index) => {\n      const key = document.createElement('div');\n      key.className = 'key';\n      key.id = this.KeyCodeArray[index];\n      if (elem.length !== 1) key.classList.add(elem.toLowerCase());\n      if (elem === ' ') {\n        key.classList.add('space');\n        key.style.background = `url(${_webp_space_webp__WEBPACK_IMPORTED_MODULE_0__[\"default\"]})`;\n        key.innerHTML = '';\n      } else if (elem === '⌫') {\n        key.classList.add('backspace');\n        key.innerHTML = elem;\n      } else {\n        key.innerHTML = elem;\n      }\n      keyboard.append(key);\n    });\n  },\n  renderUpper(keys) {\n    keys.forEach((key, index) => {\n      key.innerHTML = this.keyLayoutObj.en.Upper[index];\n    });\n  },\n  renderLower(keys) {\n    keys.forEach((key, index) => {\n      key.innerHTML = this.keyLayoutObj.en.Lower[index];\n    });\n  },\n  render(keys) {\n    keys.forEach((key, index) => {\n      if (this.config.lang === 'en' && this.config.caps) key.innerHTML = this.keyLayoutObj.en.Upper[index];\n      else if (this.config.lang === 'en' && !this.config.caps) key.innerHTML = this.keyLayoutObj.en.Lower[index];\n      else if (this.config.lang === 'ru' && this.config.caps) key.innerHTML = this.keyLayoutObj.ru.Upper[index];\n      else key.innerHTML = this.keyLayoutObj.ru.Lower[index];\n    });\n  },\n  changeCaps() {\n    this.config.caps = !this.config.caps;\n  },\n  changeLang() {\n    if (this.config.lang === 'en') this.config.lang = 'ru';\n    else this.config.lang = 'en';\n  },\n  getCaps() {\n    return this.config.caps;\n  },\n  getShift() {\n    return this.config.shift;\n  },\n  changeShift() {\n    this.config.shift = !this.config.shift;\n  },\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Keyboard);\n\n\n//# sourceURL=webpack://virtual-keyboard/./assets/modules/keyboard.js?");
 
 /***/ }),
 
@@ -46,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \".wrapper {\\n  width: 1280px;\\n  height: 100vh;\\n  margin: 0 auto;\\n  background-color: aqua;\\n}\\n\\ntextarea {\\n  width: 100%;\\n  height: 40%;\\n  resize: none;\\n  outline: none;\\n  box-sizing: border-box;\\n  margin-bottom: 15px;\\n}\\n\\n.keyboard {\\n  display: flex;\\n  column-gap: 10px;\\n  row-gap: 10px;\\n  align-items: start;\\n  flex-wrap: wrap;\\n  width: 100%;\\n  height: 50vh;\\n  background-color: black;\\n  padding: 15px;\\n  box-sizing: border-box;\\n  border-radius: 10px;\\n}\\n\\n.backspace {\\n  width: 136px !important;\\n}\\n\\n.key {\\n  width: 68px;\\n  height: 68px;\\n  background: radial-gradient(circle at 50% 50%, rgb(255, 255, 255) 0%, rgb(217, 217, 217) 100%);\\n  border-radius: 3px;\\n  font-family: \\\"Open Sans\\\", sans-serif;\\n  font-size: 24px;\\n  font-weight: 500;\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://virtual-keyboard/./assets/scss/style.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"body {\\n  height: 100vh;\\n  display: flex;\\n  flex-direction: column;\\n  align-items: center;\\n  justify-content: center;\\n  background-color: black;\\n}\\n\\ntextarea {\\n  width: 1160px;\\n  height: 200px;\\n  resize: none;\\n  outline: none;\\n  box-sizing: border-box;\\n  margin-bottom: 15px;\\n  margin-top: 15px;\\n  border-radius: 4px;\\n}\\n\\n.keyboard {\\n  display: flex;\\n  column-gap: 10px;\\n  row-gap: 10px;\\n  flex-wrap: wrap;\\n  width: 1190px;\\n  padding: 15px;\\n  box-sizing: border-box;\\n  border-radius: 10px;\\n}\\n\\n.key {\\n  width: 68px;\\n  height: 68px;\\n  background-color: #353230;\\n  border-radius: 4px;\\n  font-family: \\\"Open Sans\\\", sans-serif;\\n  font-size: 24px;\\n  font-weight: 500;\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n  color: #fff;\\n}\\n\\n.key_active {\\n  background-color: #fff;\\n  color: #CE6C84;\\n}\\n\\n.backspace {\\n  background-color: #181411;\\n}\\n\\n.tab, .caps, .del {\\n  background-color: #181411;\\n  width: 107px;\\n  font-size: 20px;\\n}\\n\\n.enter {\\n  background-color: #CE6C84;\\n  width: 185px;\\n  font-size: 20px;\\n}\\n\\n.shift {\\n  background-color: #181411;\\n  width: 146px;\\n  font-size: 20px;\\n}\\n\\n.space {\\n  width: 536px;\\n  font-size: 20px;\\n  background-position: center;\\n  background-size: contain;\\n}\\n\\n.ctrl, .win, .alt {\\n  background-color: #181411;\\n  font-size: 20px;\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://virtual-keyboard/./assets/scss/style.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -67,6 +67,16 @@ eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n
 /***/ ((module) => {
 
 eval("\n\nmodule.exports = function (i) {\n  return i[1];\n};\n\n//# sourceURL=webpack://virtual-keyboard/./node_modules/css-loader/dist/runtime/noSourceMaps.js?");
+
+/***/ }),
+
+/***/ "./assets/webp/space.webp":
+/*!********************************!*\
+  !*** ./assets/webp/space.webp ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"dc86cce8ff834dac0c83f99d8f94bdcb.webp\");\n\n//# sourceURL=webpack://virtual-keyboard/./assets/webp/space.webp?");
 
 /***/ }),
 
@@ -201,6 +211,18 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -215,6 +237,26 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/

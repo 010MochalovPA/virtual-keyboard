@@ -35,6 +35,10 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.webp$/i,
+        use: ['file-loader'],
+      },
     ]
   },
   devServer:{

@@ -14,6 +14,7 @@ textArea.onblur = () => {
 };
 
 function addTextArea(area, input) {
+  if (input === '&amp;') input = input.substring(0, 1);
   const pos = area.selectionStart;
   const first = area.value.substring(0, pos);
   const second = area.value.substring(pos, area.value.length);

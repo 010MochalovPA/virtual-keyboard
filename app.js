@@ -14,7 +14,9 @@ textArea.onblur = () => {
 };
 
 function addTextArea(area, input) {
-  if (input === '&amp;') input = input.substring(0, 1);
+  if (input === '&amp;') input = '&';
+  else if (input === '&lt;') input = '<';
+  else if (input === '&gt;') input = '>';
   const pos = area.selectionStart;
   const first = area.value.substring(0, pos);
   const second = area.value.substring(pos, area.value.length);
@@ -62,6 +64,7 @@ function checkKeysDown(event) {
     if (!event.repeat === true) {
       if (event.code !== 'AltRight') Keyboard.createAnimation(keyboard, keycode.offsetTop, keycode.offsetLeft, keycode.offsetWidth, keycode.offsetHeight);
       else {
+        event.preventDefault();
         const alt = document.getElementById(event.code);
         Keyboard.createAnimation(keyboard, alt.offsetTop, alt.offsetLeft, alt.offsetWidth, alt.offsetHeight);
       }

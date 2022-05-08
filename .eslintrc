@@ -4,6 +4,7 @@
     "browser": true
   },
   "rules": {
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "max-len": [2, 160, 4, {"ignoreUrls": true}]
   }
 }

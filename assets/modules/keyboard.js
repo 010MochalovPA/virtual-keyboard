@@ -10,12 +10,12 @@ const Keyboard = {
     'Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7',
     'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backslash', 'Backspace',
     'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO',
-    'KeyP', 'BracketLeft', 'BracketRight', 'NumpadDecimal',
+    'KeyP', 'BracketLeft', 'BracketRight', 'Delete',
     'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK',
     'KeyL', 'Semicolon', 'Quote', 'Enter',
     'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma',
     'Period', 'Slash', 'ArrowUp', 'ShiftRight',
-    'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltLeftRight', 'ArrowLeft',
+    'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft',
     'ArrowDown', 'ArrowRight', 'ControlRight',
   ],
   keyLayoutObj: {
@@ -55,7 +55,7 @@ const Keyboard = {
     const keyboard = document.createElement('div');
 
     keyboard.className = 'keyboard';
-    textArea.readOnly = true;
+    textArea.className = 'textarrea';
     document.body.append(textArea);
     document.body.append(keyboard);
 
@@ -110,6 +110,21 @@ const Keyboard = {
   },
   changeShift() {
     this.config.shift = !this.config.shift;
+  },
+  createAnimation(keyboard, y, x, width = 68, height = 68) {
+    const circle = document.createElement('div');
+
+    circle.classList = 'light-key';
+    circle.style.width = `${width}px`;
+    circle.style.height = `${height}px`;
+    circle.style.top = `${y}px`;
+    circle.style.left = `${x}px`;
+    keyboard.append(circle);
+
+    circle.classList.add('scale');
+    setTimeout(() => {
+      circle.remove();
+    }, 350);
   },
 };
 

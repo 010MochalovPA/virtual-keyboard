@@ -42,6 +42,7 @@ function deleteTextAfter(area) {
 
 function checkKeysDown(event) {
   const keycode = document.getElementById(event.code);
+  keycode.classList.add('key_active');
   if (event.key === 'Shift') {
     if (!event.repeat === true) {
       Keyboard.createAnimation(keyboard, keycode.offsetTop, keycode.offsetLeft, keycode.offsetWidth, keycode.offsetHeight);
@@ -108,6 +109,7 @@ function checkKeysDown(event) {
 document.addEventListener('keydown', checkKeysDown);
 
 document.addEventListener('keyup', (event) => {
+  document.getElementById(event.code).classList.remove('key_active');
   if (event.key === 'Shift') {
     Keyboard.changeCaps();
     Keyboard.changeShift();

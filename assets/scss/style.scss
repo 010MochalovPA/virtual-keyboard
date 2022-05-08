@@ -50,6 +50,7 @@ textarea {
   align-items: center;
   justify-content: center;
   color: #fff;
+  transition: all 0.3s;
 }
 .light-key {
   position: absolute;
@@ -59,8 +60,9 @@ textarea {
   box-shadow: 0 0 5px 10px #AA1F53;
 }
 .key_active{
-  background-color: #fff;
+  background-color: #fff !important;
   color:#CE6C84;
+  transform: scale(0.8);
 }
 .backspace{
   background-color: #181411;

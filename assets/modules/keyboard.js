@@ -2,9 +2,9 @@ import spaceImg from '../webp/space.webp';
 
 const Keyboard = {
   config: {
-    lang: 'en',
-    caps: false,
-    shift: false,
+    lang: localStorage.getItem('lang') || 'en',
+    caps: localStorage.getItem('caps') || false,
+    shift: localStorage.getItem('shift') || false,
   },
   KeyCodeArray: [
     'Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7',
@@ -67,25 +67,10 @@ const Keyboard = {
       if (elem === ' ') {
         key.classList.add('space');
         key.style.background = `url(${spaceImg})`;
-        key.innerHTML = '';
-      } else if (elem === '⌫') {
-        key.classList.add('backspace');
-        key.innerHTML = elem;
-      } else {
-        key.innerHTML = elem;
-      }
+      } else if (elem === '⌫') key.classList.add('backspace');
       keyboard.append(key);
     });
-  },
-  renderUpper(keys) {
-    keys.forEach((key, index) => {
-      key.innerHTML = this.keyLayoutObj.en.Upper[index];
-    });
-  },
-  renderLower(keys) {
-    keys.forEach((key, index) => {
-      key.innerHTML = this.keyLayoutObj.en.Lower[index];
-    });
+    this.render(document.querySelectorAll('.key'));
   },
   render(keys) {
     keys.forEach((key, index) => {
@@ -97,10 +82,12 @@ const Keyboard = {
   },
   changeCaps() {
     this.config.caps = !this.config.caps;
+    localStorage.setItem('caps', this.config.caps);
   },
   changeLang() {
     if (this.config.lang === 'en') this.config.lang = 'ru';
     else this.config.lang = 'en';
+    localStorage.setItem('lang', this.config.lang);
   },
   getCaps() {
     return this.config.caps;
@@ -110,6 +97,7 @@ const Keyboard = {
   },
   changeShift() {
     this.config.shift = !this.config.shift;
+    localStorage.setItem('shift', this.config.shift);
   },
   createAnimation(keyboard, y, x, width = 68, height = 68) {
     const circle = document.createElement('div');

@@ -104,12 +104,9 @@ function checkKeysDown(event) {
   } else if (event.ctrlKey || event.altKey) {
     event.preventDefault();
     if (!event.repeat === true) {
-      if (event.code !== 'AltRight') Keyboard.createAnimation(keyboard, keycode.offsetTop, keycode.offsetLeft, keycode.offsetWidth, keycode.offsetHeight);
-      else {
-        event.preventDefault();
-        const alt = document.getElementById(event.code);
-        Keyboard.createAnimation(keyboard, alt.offsetTop, alt.offsetLeft, alt.offsetWidth, alt.offsetHeight);
-      }
+      event.preventDefault();
+      const alt = document.getElementById(event.code);
+      Keyboard.createAnimation(keyboard, alt.offsetTop, alt.offsetLeft, alt.offsetWidth, alt.offsetHeight);
       if (event.ctrlKey && event.altKey) {
         Keyboard.changeLang();
         Keyboard.render(keys);
@@ -140,7 +137,7 @@ function checkKeysDown(event) {
         } else if (event.key === 'Meta') {
           event.preventDefault();
           if (!event.repeat === true) Keyboard.createAnimation(keyboard, keycode.offsetTop, keycode.offsetLeft, keycode.offsetWidth, keycode.offsetHeight);
-        } else if (event.key === 'AltRight') {
+        } else if (event.key === 'AltRight' || event.key === 'AltGraph') {
           event.preventDefault();
           if (!event.repeat === true) Keyboard.createAnimation(keyboard, keycode.offsetTop, keycode.offsetLeft, keycode.offsetWidth, keycode.offsetHeight);
         } else {

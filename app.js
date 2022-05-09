@@ -13,7 +13,7 @@ function clearShift(event) {
   Keyboard.render(keys);
   event.target.removeEventListener('mouseout', clearShift);
 }
-function clearKey(event) {
+const clearKey = (event) => {
   event.target.classList.remove('key_active');
   if (event.type === 'mouseup' && (event.target.id === 'ShiftLeft' || event.target.id === 'ShiftRight')) {
     Keyboard.changeCaps();
@@ -23,7 +23,7 @@ function clearKey(event) {
   }
 }
 
-function addTextArea(area, input) {
+const addTextArea = (area, input) => {
   if (input === '&amp;') input = '&';
   else if (input === '&lt;') input = '<';
   else if (input === '&gt;') input = '>';
@@ -34,7 +34,7 @@ function addTextArea(area, input) {
   area.selectionStart = pos + 1;
   area.selectionEnd = pos + 1;
 }
-function deleteTextBefore(area) {
+const deleteTextBefore = (area) =>{
   const pos = area.selectionStart;
   const first = area.value.substring(0, pos - 1);
   const second = area.value.substring(pos, area.value.length);
@@ -43,7 +43,7 @@ function deleteTextBefore(area) {
   area.selectionEnd = (pos !== 0) ? pos - 1 : 0;
 }
 
-function deleteTextAfter(area) {
+const deleteTextAfter = (area) => {
   const pos = area.selectionStart;
   const first = area.value.substring(0, pos);
   const second = area.value.substring(pos + 1, area.value.length);
@@ -52,7 +52,7 @@ function deleteTextAfter(area) {
   area.selectionEnd = pos;
 }
 
-function checkclick(event) {
+const checkclick = (event) => {
   event.target.classList.add('key_active');
   Keyboard.createAnimation(keyboard, event.target.offsetTop, event.target.offsetLeft, event.target.offsetWidth, event.target.offsetHeight);
   if (event.target.id === 'Tab') addTextArea(textArea, String.fromCharCode(9));
@@ -82,7 +82,7 @@ textArea.onblur = () => {
   textArea.focus();
 };
 
-function checkKeysDown(event) {
+const checkKeysDown = (event) => {
   const keycode = document.getElementById(event.code);
   if (Keyboard.KeyCodeArray.includes(event.code)) {
     keycode.classList.add('key_active');

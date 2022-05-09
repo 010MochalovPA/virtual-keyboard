@@ -51,6 +51,10 @@ textarea {
   justify-content: center;
   color: #fff;
   transition: all 0.3s;
+  &:hover{
+    background-color: #fff !important;
+    color:#AA1F53;
+  }
 }
 .light-key {
   position: absolute;
@@ -61,11 +65,12 @@ textarea {
 }
 .key_active{
   background-color: #fff !important;
-  color:#CE6C84;
+  color:#AA1F53;
   transform: scale(0.8);
 }
 .backspace{
   background-color: #181411;
+  
 }
 .tab, .caps, .del{
   background-color: #181411;
@@ -85,6 +90,7 @@ textarea {
 .space {
   width: 536px;
   font-size: 20px;
+  background-size: 100%;
 }
 .ctrl, .win, .alt{
   background-color: #181411;

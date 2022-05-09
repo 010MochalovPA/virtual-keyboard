@@ -4,7 +4,8 @@ const Keyboard = {
   config: {
     lang: localStorage.getItem('lang') || 'en',
     caps: localStorage.getItem('caps') || false,
-    shift: localStorage.getItem('shift') || false,
+    shift: false,
+    value: localStorage.getItem('value') || '',
   },
   KeyCodeArray: [
     'Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7',

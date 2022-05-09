@@ -54,11 +54,18 @@ const Keyboard = {
   init() {
     const textArea = document.createElement('textarea');
     const keyboard = document.createElement('div');
-
+    const spanText = document.createElement('span');
+    const spanText2 = document.createElement('span');
     keyboard.className = 'keyboard';
     textArea.className = 'textarrea';
+    spanText.className = 'spantext';
+    spanText2.className = 'spantext';
+    spanText.innerHTML = 'Клавиатура создана в операционной системе Windows';
+    spanText2.innerHTML = 'Для переключения языка комбинация: ctrl + alt';
     document.body.append(textArea);
     document.body.append(keyboard);
+    document.body.append(spanText);
+    document.body.append(spanText2);
 
     this.keyLayoutObj.en.Lower.forEach((elem, index) => {
       const key = document.createElement('div');

@@ -109,7 +109,6 @@ const Keyboard = {
   },
   createAnimation(keyboard, y, x, width = 68, height = 68) {
     const circle = document.createElement('div');
-
     circle.classList = 'light-key';
     circle.style.width = `${width}px`;
     circle.style.height = `${height}px`;
